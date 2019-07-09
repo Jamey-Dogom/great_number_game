@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Great Number Game</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class = "mg-bt5">Welcome to the Great Number Game!</h1>
+        <h4>I am thinking of a number between 1 and 100!</h4>
+        <h4 class = "mg-bt5">Take a guess! (# of Guesses: {{session['count']}})</h4>
+        
+
+
+        <form action="game" method="POST">
+            <div class="form-group">
+                <input name = "guessing" type="text" class="form-control mg-bt5 submit-btn" id="input" placeholder="">
+                <button type="submit" value="Reset" class="btn btn-warning btn-lg">Submit</button>
+            </div>
+        </form>
+
+                <!-- if guess is wrong and too high display div -->
+        {% if answer == 1: %}
+            <div class = "box red"></div>
+            <p class = "result-font">Too low!</p>
+        {% endif %}
+    
+            <!-- if guess is wrong and too low display div -->
+        {% if answer == 2: %}
+        <div class = "box red"></div>
+        <p class = "result-font">Too High!</p>
+        {% endif %}
+    
+            <!-- if guess is wrong and too correct display div w/ button -->
+        {% if answer == 3: %}
+        <div class = "box green"></div>
+        <p class = "result-font">{{session['guess']}} was the number!</p>
+        {% endif %}
+
+    </div>
+</body>
+
+</html>
